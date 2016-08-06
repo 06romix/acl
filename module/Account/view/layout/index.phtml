@@ -1,44 +1,63 @@
-<?php echo $this->doctype(); ?>
+<?php
+/**
+ * @var $this Zend\View\Renderer\PhpRenderer
+ */
+echo $this->doctype();
+?>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <?php echo $this->headTitle()->setSeparator(' - ')->setAutoEscape(false) ?>
+  <head>
+    <meta charset="utf-8">
+      <?=$this->headTitle();?>
 
-        <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
-        <!-- Le styles -->
-        <?php echo $this->headLink(
-                  array(
+      <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+      ?>
+      <!-- Le styles -->
+      <?php echo $this->headLink(
+                  [
                       'rel' => 'shortcut icon',
                       'type' => 'image/vnd.microsoft.icon',
                       'href' => $this->basePath() . '/img/favicon.ico'
-                  )
+                  ]
               )
-                        ->prependStylesheet($this->basePath('css/generalStyle.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css'));
-        ?>
+                  ->prependStylesheet(
+                      [
+                          'rel' => 'stylesheet/less',
+                          'type' => 'text/css',
+                          'href' => $this->basePath('css/index.less')
+                      ]
+                  )
+                  ->prependStylesheet($this->basePath('css/generalStyle.css'))
+                  ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+                  ->prependStylesheet($this->basePath('css/bootstrap.min.css'));
+      ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery.min.js'))
-            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('js/html5shiv.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', ['conditional' => 'lt IE 9',])
+            ->prependFile($this->basePath('js/html5shiv.min.js'), 'text/javascript', ['conditional' => 'lt IE 9',])
         ; ?>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
         <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
-    </head>
-    <body>
-        <div class="container">
-            <!-- top bar -->
-            <div class="top">
-                <div class="siteTitle"><h2><?=$this->headTitle()->rendertitle(); ?></h2></div>
-            </div>
-            <?php echo $this->content; ?>
-        </div> <!-- /container -->
-    </body>
+  </head>
+  <body>
+    <div class="container"> <!-- /container -->
+      <!-- top bar -->
+      <div class="top">
+        <div class="siteTitle"><h2><?=$this->headTitle()->renderTitle(); ?></h2></div>
+      </div>
+      <menu>
+        <li><a<?=($this->action == 'd') ? ' class="active"' : '';?> href="../dashboard/">Dashboard</a></li>
+        <li><a<?=($this->action == 'r') ? ' class="active"' : '';?> href="../reports/">Reports</a></li>
+        <li><a<?=($this->action == 'c') ? ' class="active"' : '';?> href="../configuration/">Configuration</a></li>
+      </menu>
+      <!-- end top bar -->
+      <?=$this->content;?>
+    </div>  <!-- /container -->
+  </body>
 </html>

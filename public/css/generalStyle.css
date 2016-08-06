@@ -1,5 +1,5 @@
 body {
-    background: #f6f6f6;
+    background: #cccccc;
     /*font: 100%/1.5em Arial,Helvetica, sans-serif;*/
     color: #000;
     min-width: 400px;
@@ -17,53 +17,6 @@ li {
     padding-left: 5px;
 }
 
-.top {
-    width: 100%;
-    display: block;
-    padding: 5px 20px;
-    background: white;
-    border-bottom: 1px solid #dddddd;
-    height: 60px;
-    position: relative;
-}
-
-.top h2 {
-    color: #5fbd33;
-    margin-top: 10px;
-}
-
-.siteTitle {
-    display: inline-block;
-}
-
-.auth {
-    font-size: 16px;
-    position: absolute;
-    right: 20px;
-    margin-top: 15px;
-    display: inline-block;
-}
-
-.login {
-    font-weight: 700;
-    color: #5fbd33;
-    /*background-color: #f6f6f6;*/
-    padding: 0 0.5em;
-    /*border: 1px solid #5fbd33;*/
-    border-radius: 5px;
-    line-height: 20px;
-    display: inline-block;
-    margin-right: 0;
-}
-
-.loginButton {
-    background-color: white;
-    padding: 0 0.2em;
-    /*border: 1px solid #5fbd33;*/
-    border-radius: 5px;
-    line-height: 20px;
-    display: inline-block;
-}
 
 /* flexible media */
 
