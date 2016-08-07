@@ -1,8 +1,12 @@
 <?php
 namespace Account;
 
+use Account\Controller\Plugin\AclPlugin;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+
+use Account\Entity\User;
+use Zend\Authentication\AuthenticationService;
 class Module
 {
   /**
@@ -20,12 +24,24 @@ class Module
 
   /**
    * @param MvcEvent $e
+   * @return bool
+   */
+  public function AuthAndAcl($e)
+  {
+    $acl = new AclPlugin();
+    $acl->isAllowed($e->getRouteMatch()->getParam('action'));
+  }
+
+  /**
+   * @param MvcEvent $e
    */
   public function setLayout($e)
   {
+    $viewModel = $e->getViewModel();
+    $viewModel->action = $e->getRouteMatch()->getParam('action');
+
     if (0 === strpos(__NAMESPACE__, 'Account', 0)){
       // Set the layout template
-      $viewModel = $e->getViewModel();
       $viewModel->setTemplate('layout/index');
     }
   }

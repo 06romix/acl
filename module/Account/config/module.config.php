@@ -1,5 +1,6 @@
 <?php
 // Filename: /module/Account/config/module.config.php
+
 return [
 
   'controllers' => [
@@ -33,5 +34,11 @@ return [
     'template_path_stack' => [
       __DIR__ . '/../view',
     ],
-  ], 
+  ],
+
+  'controller_plugins' => [
+    'invokables' => [
+      'AclPlugin' => 'Account\Controller\Plugin\AclPlugin',
+    ]
+  ],
 ];

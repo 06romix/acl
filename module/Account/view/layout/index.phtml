@@ -1,4 +1,8 @@
 <?php
+use Account\Controller\Plugin\AclPlugin;
+use Zend\Authentication\AuthenticationService;
+use Account\Entity\User;
+
 /**
  * @var $this Zend\View\Renderer\PhpRenderer
  */
@@ -50,13 +54,53 @@ echo $this->doctype();
       <!-- top bar -->
       <div class="top">
         <div class="siteTitle"><h2><?=$this->headTitle()->renderTitle(); ?></h2></div>
+        <div class="auth">
+          <?php
+          $auth = new AuthenticationService();
+          if ($auth->getIdentity()) {
+            echo '<div class="login">';
+            echo User::getUserLogin($auth->getIdentity());
+            echo '</div>';
+            if (User::getUserRole($auth->getIdentity()) == 'admin') {
+              echo '<div class="loginButton">';
+              echo '<a href="/admin/">Admin-panel</a>';
+              echo '</div>';
+            }
+            echo '<div class="loginButton">';
+            echo '<a href="/auth/logout/">Вихід</a>';
+            echo '</div>';
+          } else {
+            echo '<div class="loginButton">';
+            echo '<a href="/auth/login/">Ввійти</a> | ';
+            echo '<a href="/auth/registration/">Реєстрація</a>';
+            echo '</div>';
+          }
+          ?>
+        </div>
       </div>
-      <menu>
-        <li><a<?=($this->action == 'd') ? ' class="active"' : '';?> href="../dashboard/">Dashboard</a></li>
-        <li><a<?=($this->action == 'r') ? ' class="active"' : '';?> href="../reports/">Reports</a></li>
-        <li><a<?=($this->action == 'c') ? ' class="active"' : '';?> href="../configuration/">Configuration</a></li>
-      </menu>
       <!-- end top bar -->
+      <?php
+      $menuItems = [
+        'dashboard',
+        'reports',
+        'configuration',
+      ];
+
+      echo '<menu>';
+      foreach ($menuItems AS $action) {
+        if (true) {
+//        if ((new AclPlugin())->isAllowed($action, 'see')) {
+          echo '<li>';
+          echo '<a ' . (($this->action == $action) ? ' class="active"' : '') . ' href="../' . $action . '/">
+                  ' . $action . '
+               </a>';
+          echo '</li>';
+        }
+      }
+      echo '</menu>';
+      ?>
+
+      <?php var_dump($this->userRole); ?>
       <?=$this->content;?>
     </div>  <!-- /container -->
   </body>

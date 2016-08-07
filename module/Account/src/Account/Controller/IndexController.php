@@ -8,24 +8,29 @@ class IndexController extends AbstractActionController
 {
   public function indexAction()
   {
+    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
+    var_dump($access);
     return new ViewModel();
   }
 
   public function dashboardAction()
   {
-    $this->layout()->action = 'd';
+    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
+    var_dump($access);
     return new ViewModel(['action' => 'Dashboard']);
   }
 
   public function reportsAction()
   {
-    $this->layout()->action = 'r';
+    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
+    var_dump($access);
     return new ViewModel();
   }
 
   public function configurationAction()
   {
-    $this->layout()->action = 'c';
+    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
+    var_dump($access);
     return new ViewModel();
   }
 }

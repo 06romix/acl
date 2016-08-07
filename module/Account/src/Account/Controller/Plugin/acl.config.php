@@ -1,10 +1,11 @@
 <?php
-namespace Account\Acl;
+namespace Account\Controller\Plugin;
 
 return [
     'acl' => [
         'roles' => [
-            'base'     => 'null',
+            'guest'    => 'null',
+            'base'     => 'guest',
             'employee' => 'base',
             'admin'    => 'base',
             'owner'    => 'base',
@@ -24,22 +25,16 @@ return [
             'Account' => [
               'all' => 'base',
             ],
-            'dashboard' => [
-              'all' => 'base'
-            ],
-            'reports' => [
-              'all' => 'base'
-            ],
-            'configuration' => [
-              'all' => 'admin'
+            'Account\Controller\Index' => [
+              'all' => 'guest'
             ],
         ],
         'deny' => [
             'reports' => [
-              'all' => 'admin'
+              'see' => 'admin'
             ],
             'configuration' => [
-              'all' => 'employee'
+              'access' => 'employee'
             ],
         ],
     ]
