@@ -38,7 +38,7 @@ return [
 
   'controller_plugins' => [
     'invokables' => [
-      'AclPlugin' => 'Account\Controller\Plugin\AclPlugin',
+      'AclPlugin' => 'Account\Plugin\AclPlugin',
     ]
   ],
 ];

@@ -5,11 +5,17 @@ use Account\Db\DbFunctions;
 
 class User
 {
+  const ROLE_GUEST = 'guest';
+  const ROLE_OWNER = 'owner';
+  const ROLE_ADMIN = 'admin';
+  const ROLE_EMPLOYEE = 'employee';
+
   private $id;
   private $name;
   private $pass;
   private $email;
   private $role;
+  private $parent;
 
   function __construct($id = 0)
   {
@@ -45,15 +51,29 @@ class User
     return array('status' => true, 'data' => $result);
   }
 
-  public function addUser()
+  public function createUser()
   {
-    $this->role = 'user';
+    $this->role = User::ROLE_OWNER;
 
     $setField = "'"
       . $this->name . "', '"
       . md5($this->pass) . "', '"
       . $this->email . "', '"
       . $this->role . "'";
+
+    DbFunctions::insertEntity('user', $setField);
+  }
+
+  public function addReferral($parent)
+  {
+    $this->parent = $parent;
+
+    $setField = "'"
+      . $this->name . "', '"
+      . md5($this->pass) . "', '"
+      . $this->email . "', '"
+      . $this->role . "', '"
+      . $this->parent . "'";
 
     DbFunctions::insertEntity('user', $setField);
   }

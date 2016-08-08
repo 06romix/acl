@@ -7,12 +7,6 @@ $(document).ready(function(){
     },
     "Please don't insert numbers.");
 
-  $.validator.addMethod("mobTel", function(value, element) {
-      //console.log(!/\+?[0-9 )(-]+/.test(value));
-      return /\+?[0-9 )(-]+/.test(value);
-    },
-    "Введіть коректний номер.");
-
   $('#formR').validate({
     rules: {
       name: {

@@ -3,34 +3,36 @@ namespace Account\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Mvc\MvcEvent;
 
 class IndexController extends AbstractActionController
 {
+  /**
+   * @param MvcEvent $e
+   * @return mixed
+   */
+  public function onDispatch(MvcEvent $e) {
+    $this->AclPlugin()->init($this);
+    return parent::onDispatch($e);
+  }
+
   public function indexAction()
   {
-    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
-    var_dump($access);
     return new ViewModel();
   }
 
   public function dashboardAction()
   {
-    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
-    var_dump($access);
-    return new ViewModel(['action' => 'Dashboard']);
+    return new ViewModel();
   }
 
   public function reportsAction()
   {
-    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
-    var_dump($access);
     return new ViewModel();
   }
 
   public function configurationAction()
   {
-    $access = $this->AclPlugin()->isAllowed($this->params()->fromRoute('action'));
-    var_dump($access);
     return new ViewModel();
   }
 }

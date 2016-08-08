@@ -1,5 +1,5 @@
 <?php
-namespace Account\Controller\Plugin;
+namespace Account\Plugin;
 
 use Zend\Permissions\Acl\Acl;
 use Zend\Permissions\Acl\Role\GenericRole as Role;

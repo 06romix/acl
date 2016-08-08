@@ -1,0 +1,38 @@
+<?php
+/**
+ * @var $this Zend\View\Renderer\PhpRenderer
+ */
+$this->headTitle('Authorization'); ?>
+<div class="row">
+<?php
+//messenger
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <ul><li>')
+  ->setMessageSeparatorString('</li><li>')
+  ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error', array('array', 'alert-dismissable', 'alert-danger'));
+//messenger
+
+/**
+ * @var $form \Zend\Form\Form
+ */
+$form->setAttribute('action', $this->url('auth', array('action' => 'login')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo '<fieldset>';
+  foreach ($form as $element){
+  echo '<div class="formGroup">';
+
+    echo '<div class="col-10">';
+      echo $this->formRow($element);
+    echo '</div>';
+  echo '</div>';
+  }
+  echo '</filedset>';
+echo $this->form()->closeTag();
+?>
+</div>

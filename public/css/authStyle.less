@@ -1,0 +1,58 @@
+form {
+  margin: 0 auto;
+  display: block;
+  width: 300px;
+  fieldset {
+    width: 300px;
+    .formGroup {
+      margin: 0 0 0.7em 0;
+      width: 300px;
+      label[generated=true] {
+        margin-left: 0.3em;
+      }
+      input[type=text], input[type=password] {
+        width: 300px;
+      }
+      select {
+        text-align: center;
+        width: 200px;
+      }
+      input[type=submit] {
+        display: block;
+        width: auto;
+        margin: 0 auto;
+        font-size: 16px;
+        font-weight: bold;
+        color: #f3f3f3;
+        padding: 0.1em 0.8em;
+        border: 1px solid #ff790c;
+        border-radius: 3px;
+        background-color: #ff790c;
+        &:hover {
+          color: white;
+        }
+      }
+      ul {
+        width: 300px;
+        color: #47211e;
+        li {
+          list-style-position: inside;
+        }
+      }
+    }
+  }
+}
+
+.error {
+    font-weight: normal;
+    color: #b92c28;
+}
+
+@media screen and (max-width: 550px)
+{
+    .pageNavigation {
+        width: 100%;
+        position: inherit;
+        text-align: center;
+    }
+}

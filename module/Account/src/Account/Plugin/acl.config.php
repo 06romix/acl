@@ -1,5 +1,5 @@
 <?php
-namespace Account\Controller\Plugin;
+namespace Account\Plugin;
 
 return [
     'acl' => [
@@ -18,6 +18,12 @@ return [
                     'reports',
                     'configuration',
                 ],
+                'Auth' => [
+                  'Auth\Controller\Auth',
+                  'login',
+                  'registration',
+                  'referral',
+                ],
             ],
         ],
         'allow' => [
@@ -28,6 +34,16 @@ return [
             'Account\Controller\Index' => [
               'all' => 'guest'
             ],
+            // Authorization Controller
+              'login' => [
+                'all' => 'guest',
+              ],
+              'registration' => [
+                'all' => 'guest',
+              ],
+              'referral' => [
+                'all' => 'owner',
+              ],
         ],
         'deny' => [
             'reports' => [
