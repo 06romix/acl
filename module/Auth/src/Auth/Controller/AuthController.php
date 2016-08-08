@@ -11,8 +11,18 @@ use Auth\Form\LoginForm;
 use Auth\Form\RegistrationForm;
 use Auth\Form\ReferralForm;
 use Account\Entity\User;
+use Zend\Mvc\MvcEvent;
 class AuthController extends AbstractActionController
 {
+//  /**
+//   * @param MvcEvent $e
+//   * @return mixed
+//   */
+//  public function onDispatch(MvcEvent $e) {
+//    $this->AclPlugin()->init($this);
+//    return parent::onDispatch($e);
+//  }
+
   public function loginAction()
   {
     $form = new LoginForm;

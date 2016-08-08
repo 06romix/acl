@@ -27,14 +27,12 @@ class Module
     $viewModel = $e->getViewModel();
     $viewModel->action = $e->getRouteMatch()->getParam('action');
 
-    if (0 === strpos(__NAMESPACE__, 'Account', 0)){
+    if (0 === strpos(__NAMESPACE__, 'Account', 0) || $viewModel->action == 'referral'){
       // Set the layout template
       $viewModel->setTemplate('layout/index');
     }
 
-    $action = $e->getRouteMatch()->getParam('action');
-
-    if (in_array($action, array('login', 'registration', 'referral'), 0)){
+    if (in_array($viewModel->action, array('login', 'registration'), 0)){
       // Set the layout template
       $viewModel = $e->getViewModel();
       $viewModel->setTemplate('layout/auth');

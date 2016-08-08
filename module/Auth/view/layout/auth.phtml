@@ -1,4 +1,7 @@
 <?php
+use Zend\Authentication\AuthenticationService;
+use Account\Entity\User;
+
 /**
  * @var $this Zend\View\Renderer\PhpRenderer
  */
@@ -56,12 +59,39 @@ echo $this->doctype();
         <div class="container">
             <!-- top bar -->
             <div class="top">
+
                 <div class="siteTitle"><h2><?=$this->headTitle()->renderTitle();?></h2></div>
                 <div class="auth"><div class="loginButton">
                         <?=($this->headTitle()->renderTitle() == 'Реєстрація')
                           ? '<a href="/auth/login/">Login</a>'
                           : '<a href="/auth/registration/">Registration</a>'?>
                     </div></div>
+                <div class="auth">
+                    <?php
+                    $auth = new AuthenticationService();
+                    if ($auth->getIdentity()) {
+                        if (User::getUserRole($auth->getIdentity()) == 'owner') {
+                            echo '<div class="loginButton">';
+                            echo '<a href="/auth/referral/">Add referral</a>';
+                            echo '</div>';
+                        } else {
+
+                        }
+                        echo '<div class="login">';
+                        echo User::getUserLogin($auth->getIdentity());
+                        echo '</div>';
+
+                        echo '<div class="loginButton logout">';
+                        echo '<a href="/auth/logout/">(Logout)</a>';
+                        echo '</div>';
+                    } else {
+                        echo '<div class="loginButton">';
+                        echo '<a href="/auth/login/">Login</a> | ';
+                        echo '<a href="/auth/registration/">Registration</a>';
+                        echo '</div>';
+                    }
+                    ?>
+                </div>
             </div>
             <!-- left menu -->
             <?php echo $this->content; ?>

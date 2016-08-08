@@ -21,6 +21,7 @@ return [
                 'Auth' => [
                   'Auth\Controller\Auth',
                   'login',
+                  'logout',
                   'registration',
                   'referral',
                 ],
@@ -36,6 +37,9 @@ return [
             ],
             // Authorization Controller
               'login' => [
+                'all' => 'guest',
+              ],
+              'logout' => [
                 'all' => 'guest',
               ],
               'registration' => [
