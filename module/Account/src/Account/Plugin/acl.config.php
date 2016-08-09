@@ -50,11 +50,19 @@ return [
               ],
         ],
         'deny' => [
+            // Account Controller
             'reports' => [
               'see' => 'admin'
             ],
             'configuration' => [
               'access' => 'employee'
+            ],
+            // Authorization Controller
+            'login' => [
+              'see' => 'base'
+            ],
+            'registration' => [
+              'see' => 'base'
             ],
         ],
     ]

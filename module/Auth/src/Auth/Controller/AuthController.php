@@ -12,28 +12,22 @@ use Auth\Form\RegistrationForm;
 use Auth\Form\ReferralForm;
 use Account\Entity\User;
 use Zend\Mvc\MvcEvent;
-use Zend\View\Helper\ViewModel;
 
 class AuthController extends AbstractActionController
 {
-//  /**
-//   * @param MvcEvent $e
-//   * @return mixed
-//   */
-//  public function onDispatch(MvcEvent $e) {
-//    $this->AclPlugin()->init($this);
-//    return parent::onDispatch($e);
-//  }
+  /**
+   * @param MvcEvent $e
+   * @return mixed
+   */
+  public function onDispatch(MvcEvent $e) {
+    $this->AclPlugin()->init($this);
+    return parent::onDispatch($e);
+  }
 
   public function loginAction()
   {
     $form = new LoginForm;
     $auth = new AuthenticationService();
-
-    if ($auth->hasIdentity()) {
-      // Identity exists
-      return $this->redirect()->toRoute('account');
-    }
 
     /**
      * @var $request Request
@@ -68,11 +62,6 @@ class AuthController extends AbstractActionController
     $form = new RegistrationForm();
     $auth = new AuthenticationService();
     $status = $message = '';
-
-    if ($auth->hasIdentity()) {
-      // Identity exists
-      return $this->redirect()->toRoute('account');
-    }
 
     /**
      * @var $request Request
@@ -131,11 +120,6 @@ class AuthController extends AbstractActionController
     $form = new ReferralForm();
     $auth = new AuthenticationService();
     $status = $message = '';
-
-    if (!$auth->hasIdentity()) {
-      // Identity exists
-      return $this->redirect()->toRoute('account');
-    }
 
     /**
      * @var $request Request
