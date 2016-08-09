@@ -59,7 +59,8 @@ class User
       . $this->name . "', '"
       . md5($this->pass) . "', '"
       . $this->email . "', '"
-      . $this->role . "'";
+      . $this->role . "', '"
+      . $this->parent . "'";
 
     DbFunctions::insertEntity('user', $setField);
   }

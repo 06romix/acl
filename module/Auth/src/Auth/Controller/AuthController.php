@@ -12,6 +12,8 @@ use Auth\Form\RegistrationForm;
 use Auth\Form\ReferralForm;
 use Account\Entity\User;
 use Zend\Mvc\MvcEvent;
+use Zend\View\Helper\ViewModel;
+
 class AuthController extends AbstractActionController
 {
 //  /**
@@ -164,7 +166,7 @@ class AuthController extends AbstractActionController
               ->setNamespace($status)
               ->addMessage($message);
           }
-          return $this->redirect()->toRoute('account');
+          return $this->redirect()->refresh();
         } else {
           $status = 'error';
           $message = 'Something went wrong';
