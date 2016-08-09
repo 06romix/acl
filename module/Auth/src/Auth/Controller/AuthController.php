@@ -86,13 +86,6 @@ class AuthController extends AbstractActionController
         $result = $auth->authenticate($authAdapter);
 
         if ($result->isValid()) {
-          $status = 'success';
-          $message = 'Реєстрація пройшла успішно';
-          if ($message){
-            $this->flashMessenger()
-              ->setNamespace($status)
-              ->addMessage($message);
-          }
           return $this->redirect()->toRoute('account');
         } else {
           $status = 'error';

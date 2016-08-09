@@ -5,7 +5,7 @@ return [
     'acl' => [
         'roles' => [
             'guest'    => 'null',
-            'base'     => 'guest',
+            'base'     => 'null',
             'employee' => 'base',
             'admin'    => 'base',
             'owner'    => 'base',
@@ -40,7 +40,7 @@ return [
                 'all' => 'guest',
               ],
               'logout' => [
-                'all' => 'guest',
+                'all' => 'base',
               ],
               'registration' => [
                 'all' => 'guest',
@@ -56,13 +56,6 @@ return [
             ],
             'configuration' => [
               'access' => 'employee'
-            ],
-            // Authorization Controller
-            'login' => [
-              'see' => 'base'
-            ],
-            'registration' => [
-              'see' => 'base'
             ],
         ],
     ]
